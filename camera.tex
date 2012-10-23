@@ -1,0 +1,107 @@
+\chapter{The camera}
+Ut in erat tellus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Integer id fringilla massa. Praesent ut urna vel neque eleifend congue. Donec libero felis, placerat ac scelerisque sed, eleifend ac nisl. Nullam sapien odio, volutpat at venenatis nec, sollicitudin condimentum magna. In hac habitasse platea dictumst. Integer enim turpis, pellentesque in commodo ac, sagittis lobortis erat.
+\section{A FOV-based camera system}
+Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec semper accumsan velit, eget consequat tortor aliquam vitae. Nunc ut nisi metus. Pellentesque risus ipsum, facilisis vel porttitor accumsan, volutpat a massa. Nam id lorem tortor, et mollis felis. Suspendisse potenti. Nunc a turpis ac ipsum cursus malesuada sed quis elit. Sed ante diam, porttitor id consectetur a, condimentum sed purus. Mauris ultricies justo eget ante hendrerit sed auctor lacus lobortis. Curabitur turpis erat, suscipit at ullamcorper ut, fringilla non metus. Cras porttitor ipsum quis libero interdum quis gravida magna sodales. Fusce euismod, tellus vitae porta dictum, nunc tellus tempus turpis, a elementum justo magna vitae metus. Mauris erat felis, posuere bibendum malesuada sit amet, tincidunt vel est. Suspendisse laoreet ullamcorper ligula, et molestie orci ullamcorper ut. Praesent mollis sem a nibh condimentum adipiscing. Aenean vitae magna magna. Praesent quis lorem ipsum, eget lobortis tortor.
+\subsection{Perspective camera}
+Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Quisque at arcu risus. Vestibulum ullamcorper quam ut ipsum elementum porta. Proin et lorem nibh, vel vulputate justo.
+\subsection{The focal-plane}
+Donec libero felis, placerat ac scelerisque sed, eleifend ac nisl. Nullam sapien odio, volutpat at venenatis nec, sollicitudin condimentum magna. In hac habitasse platea dictumst. Integer enim turpis, pellentesque in commodo ac, sagittis lobortis erat.
+\subsection{Camera and world coordinates}
+Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Quisque at arcu risus. Vestibulum ullamcorper quam ut ipsum elementum porta. Proin et lorem nibh, vel vulputate justo.
+\subsection{The camera matrix}
+Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Quisque at arcu risus. Vestibulum ullamcorper quam ut ipsum elementum porta. Proin et lorem nibh, vel vulputate justo.
+\[
+\begin{bmatrix}
+   -f/S_x		 	& 0 		& n_0 	\\
+   0 				& -f/S_y    & m_0	\\
+   0           		& 0 		& 1
+\end{bmatrix}
+\begin{bmatrix}
+	- \hat{u}^\mathrm{T} -	\\
+	- \hat{v}^\mathrm{T} -	\\
+	- \hat{p}^\mathrm{T} -
+\end{bmatrix}
+\begin{bmatrix}
+	1 & 0 & 0 & -C_x	\\
+	0 & 1 & 0 & -C_y	\\
+	0 & 0 & 1 & -C_y	\\
+\end{bmatrix}
+\begin{bmatrix}
+	P_x \\
+	P_y \\
+	P_z	\\
+	1
+\end{bmatrix}
+=
+\begin{bmatrix}
+	\alpha n	\\
+	\alpha m	\\
+	\alpha
+\end{bmatrix}
+\]
+
+Solve for ray position column vector and set $\alpha$ = f = 1
+\[
+\begin{bmatrix}
+	P_x \\
+	P_y \\
+	P_z	\\
+	1
+\end{bmatrix}
+=
+\begin{bmatrix}
+	\alpha n	\\
+	\alpha m	\\
+	\alpha
+\end{bmatrix}
+\begin{bmatrix}
+   -f/S_x		 	& 0 		& n_0 	\\
+   0 				& -f/S_y    & m_0	\\
+   0           		& 0 		& 1
+\end{bmatrix}^{-1}
+\begin{bmatrix}
+	- \hat{u}^\mathrm{T} -	\\
+	- \hat{v}^\mathrm{T} -	\\
+	- \hat{p}^\mathrm{T} -
+\end{bmatrix}^{-1}
+\begin{bmatrix}
+	1 & 0 & 0 & -C_x	\\
+	0 & 1 & 0 & -C_y	\\
+	0 & 0 & 1 & -C_y	\\
+\end{bmatrix}^{-1}
+\]
+\[
+\iff
+\]
+\[
+\begin{bmatrix}
+	P_x \\
+	P_y \\
+	P_z	\\
+	1
+\end{bmatrix}
+=
+\begin{bmatrix}
+	n	\\
+	m	\\
+	1
+\end{bmatrix}
+\underbrace{
+\begin{bmatrix}
+   -1/S_x		 	& 0 		& n_0 	\\
+   0 				& -1/S_y    & m_0	\\
+   0           		& 0 		& 1
+\end{bmatrix}^{-1}
+\begin{bmatrix}
+	- \hat{u}^\mathrm{T} -	\\
+	- \hat{v}^\mathrm{T} -	\\
+	- \hat{p}^\mathrm{T} -
+\end{bmatrix}^{-1}
+\begin{bmatrix}
+	1 & 0 & 0 & -C_x	\\
+	0 & 1 & 0 & -C_y	\\
+	0 & 0 & 1 & -C_y	\\
+\end{bmatrix}^{-1}
+}_{\mbox{constant, i.e. can be precalculated}}
+\]
+\cite{Borman03raytracingand}

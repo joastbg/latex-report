@@ -1,0 +1,99 @@
+\chapter{Optimizations}
+\section{Overview}
+The primary path to efficiency: avoid tracing rays whenever possible; and above all, avoid ray–surface intersection tests.
+\section{Finding Bottlenecks}
+Profiling tools can be used to find details about execution time. For this purpose Instruments from Apple is used under Mac OS X Lion.
+Instruments is a mature system able to show execution of individual threads per core and execution time per function. This is very useful during
+optimization and has been used during test and development of the ray tracer described in this report.
+\section{Triangle intersection}
+Cras nisi neque, pharetra ac cursus nec, vestibulum sit amet erat. Vivamus eget viverra elit. Sed vehicula augue sit amet nibh convallis volutpat. Sed feugiat posuere nunc a auctor. Nam turpis erat, ultrices sed varius in, tempus nec enim. Donec hendrerit dignissim libero, non lacinia odio congue non. 
+\subsection{The M\"{o}ller-Trumbore test}
+Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Quisque at arcu risus. Vestibulum ullamcorper quam ut ipsum elementum porta. Proin et lorem nibh, vel vulputate justo. Nulla facilisi. Morbi diam mi, eleifend et euismod eget, blandit ut mi. Cras et convallis erat. Fusce viverra ante eu sapien blandit vitae venenatis dolor rhoncus. Morbi sit amet augue eget ante dignissim vestibulum quis ac ipsum. Morbi eu leo mi, eu varius ipsum. Donec facilisis diam nec leo imperdiet ornare. Sed molestie tortor quis eros pharetra viverra in vel elit. Phasellus ut euismod enim
+\cite{moller1997}
+\subsection{Barycentric coordinates}
+\section{Culling}
+Cras nisi neque, pharetra ac cursus nec, vestibulum sit amet erat. Vivamus eget viverra elit. Sed vehicula augue sit amet nibh convallis volutpat. Sed feugiat posuere nunc a auctor. Nam turpis erat, ultrices sed varius in, tempus nec enim. Donec hendrerit dignissim libero, non lacinia odio congue non. Nulla eu velit urna, ut accumsan nibh. Fusce ligula massa, volutpat ut blandit at, dignissim sed orci. 
+\subsection{View Frustrum Culling}
+Cras nisi neque, pharetra ac cursus nec, vestibulum sit amet erat. Vivamus eget viverra elit. Sed vehicula augue sit amet nibh convallis volutpat. Sed feugiat posuere nunc a auctor. Nam turpis erat, ultrices sed varius in, tempus nec enim. Donec hendrerit dignissim libero, non lacinia odio congue non. 
+\subsection{Backface Culling}
+Cras nisi neque, pharetra ac cursus nec, vestibulum sit amet erat. Vivamus eget viverra elit. Sed vehicula augue sit amet nibh convallis volutpat. Sed feugiat posuere nunc a auctor. Nam turpis erat, ultrices sed varius in, tempus nec enim. Donec hendrerit dignissim libero, non lacinia odio congue non. 
+\section{Tiled rendering}
+Subdividing the rendering into a regular grid of tiles of 32x32 pixels, see Section~\ref{ch:results:sec:benchmarks}.
+\section{Hierarchical Spatial Subdivision}
+Minimize the number of intersection tests to increase performance. Intersection tests are costly.
+\subsection{Kd-tree}
+For static scenes, kd-trees are regarded as the most efﬁcient acceleration structure\cite{popov07GPURT}.
+Time vs depth. (Pharr \& Humphreys, 2004)
+\subsubsection{Partitioning}
+Pellentesque felis nulla, interdum eu pretium vitae, tincidunt ultrices erat. Integer a quam ut nibh lobortis vulputate. Phasellus felis augue, sagittis vitae tempus porta, placerat ut dui. Quisque commodo, erat ut iaculis viverra, urna dui luctus erat, ac rutrum ligula mauris non arcu.
+\subsubsection{Spatial median splitting}
+\[
+split = \mu_{1/2}(p.a)
+\]
+\subsubsection{Surface Area Heuristic}
+The probability the ray hits region A, given that it hits region B:
+\[
+P(A|B) = \dfrac{SA(A)}{SA(B)}
+\]
+SA(V) the surface area of V.
+\subsubsection{Tree construction}
+Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Quisque at arcu risus. Vestibulum ullamcorper quam ut ipsum elementum porta. Proin et lorem nibh, vel vulputate justo. Nulla facilisi. Morbi diam mi, eleifend et euismod eget, blandit ut mi. Cras et convallis erat.
+\subsubsection{Ray intersection}
+Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Quisque at arcu risus. Vestibulum ullamcorper quam ut ipsum elementum porta. Proin et lorem nibh, vel vulputate justo. Nulla facilisi. Morbi diam mi, eleifend et euismod eget, blandit ut mi. Cras et convallis erat.
+\begin{algorithm}
+\caption{Calculate $y = x^n$}
+\begin{algorithmic} 
+\REQUIRE $n \geq 0 \vee x \neq 0$
+\ENSURE $y = x^n$
+\STATE $y \leftarrow 1$
+\IF{$n < 0$}
+\STATE $X \leftarrow 1 / x$
+\STATE $N \leftarrow -n$
+\ELSE
+\STATE $X \leftarrow x$
+\STATE $N \leftarrow n$
+\ENDIF
+\WHILE{$N \neq 0$}
+\IF{$N$ is even}
+\STATE $X \leftarrow X \times X$
+\STATE $N \leftarrow N / 2$
+\ELSE[$N$ is odd]
+\STATE $y \leftarrow y \times X$
+\STATE $N \leftarrow N - 1$
+\ENDIF
+\ENDWHILE
+\end{algorithmic}
+\end{algorithm}
+\section{Multithreading}
+Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Quisque at arcu risus. Vestibulum ullamcorper quam ut ipsum elementum porta. Proin et lorem nibh, vel vulputate justo. Nulla facilisi. Morbi diam mi, eleifend et euismod eget, blandit ut mi. Cras et convallis erat.
+\subsection{Exploiting parallelism}
+Screen divided into regular blocks of a power of two and assigned one separate thread to each block using a thread pool. Every block
+is added to the queue of the thread pool.
+\subsection{Thread pool}
+\begin{itemize}
+\item The thread pool pattern
+\item Asynchronous task processing within the same process
+\item A number of N threads are created to perform a number of M tasks
+\item Typically, N $\ll$ M
+\item As soon as a thread completes its task, it will request the next task from the queue
+\item The number of threads used (N) is a parameter that can be tuned to provide the best performance
+\item Thread overhead is minimized, due to avoidance of create and destroy of new threads every work iteration
+\item Queues: todo, competed
+\item Maintains a pool of worker threads
+\item N is static during execution in this implementation
+\item Memory efficient, minimize context switching between threads, tuned parameters
+\item Thread-safety of the work and complete queues
+\end{itemize}
+\section{SIMD-instructions}
+Pellentesque felis nulla, interdum eu pretium vitae, tincidunt ultrices erat. Integer a quam ut nibh lobortis vulputate. Phasellus felis augue, sagittis vitae tempus porta, placerat ut dui. Quisque commodo, erat ut iaculis viverra, urna dui luctus erat, ac rutrum ligula mauris non arcu.
+\subsection{Intel SSE}
+Streaming SIMD Extensions, SSE, is an extension to the Intel x86 architecture.
+\subsubsection{Registers}
+Pellentesque felis nulla, interdum eu pretium vitae, tincidunt ultrices erat. Integer a quam ut nibh lobortis vulputate. Phasellus felis augue, sagittis vitae tempus porta, placerat ut dui. Quisque commodo, erat ut iaculis viverra, urna dui luctus erat, ac rutrum ligula mauris non arcu.
+\subsubsection{Instructions}
+Pellentesque felis nulla, interdum eu pretium vitae, tincidunt ultrices erat. Integer a quam ut nibh lobortis vulputate. Phasellus felis augue, sagittis vitae tempus porta, placerat ut dui. Quisque commodo, erat ut iaculis viverra, urna dui luctus erat, ac rutrum ligula mauris non arcu.
+\section{Multiple rays}
+Cras nisi neque, pharetra ac cursus nec, vestibulum sit amet erat. Vivamus eget viverra elit. Sed vehicula augue sit amet nibh convallis volutpat. Sed feugiat posuere nunc a auctor. Nam turpis erat, ultrices sed varius in, tempus nec enim. Donec hendrerit dignissim libero, non lacinia odio congue non. Nulla eu velit urna, ut accumsan nibh. Fusce ligula massa, volutpat ut blandit at, dignissim sed orci. 
+\section{Cache optimizations}
+Pellentesque felis nulla, interdum eu pretium vitae, tincidunt ultrices erat. Integer a quam ut nibh lobortis vulputate. Phasellus felis augue, sagittis vitae tempus porta, placerat ut dui. Quisque commodo, erat ut iaculis viverra, urna dui luctus erat, ac rutrum ligula mauris non arcu.
+\subsection{Cache coherence}

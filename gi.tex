@@ -1,0 +1,81 @@
+\chapter{Global illumination}
+\section{Overview}
+Compare path tracing and photon mapping in aspects:
+\begin{itemize}
+\item Rendering image quality
+\item Rendering speed
+\item Physical phenomenons supported
+\item Progressive rendering or not
+\item GPU support
+\item Optimization friendly
+\item Large scenes, ie scalability
+\item Memory performance and usage
+\item Scalability threads and multiprocessor systems
+\end{itemize}
+\subsection{Path tracing}
+\begin{itemize}
+\item Variance shows up as noise
+\item Computationally intensive
+\item Probabilistic sampling technique
+\item Random process
+\item Markov chain
+\item Kajiya developed path tracing as a solution to the rendering the equation
+\item Indirect lighting
+\item Caustics
+\item Tracing a single path from the eye back to the light source
+\item Non biased method
+\item Slow, ie computationally expencive
+\item Monte Carlo Method
+\item Importance Sampling
+\item Irradiance Caching
+\item Direct Light
+\end{itemize}
+\subsection{Photon mapping}
+\begin{itemize}
+\item Flexible, render equation split up in passes
+\item Photons emitted, result stored in photon map
+\item Solves the rendering equation, some bias introduces
+\item Rays from light source
+\item Rays from camera
+\end{itemize}
+\section{The rendering equation}
+\[
+L_o(\mathbf x, \omega, \lambda, t) = L_e(\mathbf x, \omega, \lambda, t) + \int_\Omega f_r(\mathbf x, \omega', \omega, \lambda, t) L_i(\mathbf x, \omega', \lambda, t) (-\omega' \cdot \mathbf n) d \omega'
+\]
+We can simplify the above and reduce variable $\lambda$ and $t$, constant time and constant wavelength (per component vector math). The $L_e$ term can also be omitted, because only light sources are emitters.
+\[
+L_o(\mathbf x, \omega) = \int_\Omega f_r(\mathbf x, \omega', \omega) L_i(\mathbf x, \omega') (-\omega' \cdot \mathbf n) d \omega'
+\]
+
+\begin{itemize}
+\item Finite element methods and point sampling techniques
+\item Rendering is the process of solving nested integrals
+\item No analytical solution to integrals
+\end{itemize}
+\subsection{Background}
+simultaneously introduced into computer graphics by David Immel et al and James Kajiya in 1986.
+\subsection{Deriving the rendering equation}
+Reflection function.
+\section{Photon mapping in detail}
+Photon mapping is the prefered way of approximating the rendering equation, considering both performance and the high quality result it provides.
+The algorithm also supports caustics. Henrik Wann Jensen invented Photon Mapping as a faster alternative to Monte Carlo integrators.
+\subsection{Approximating the rendering equation}
+Cras nisi neque, pharetra ac cursus nec, vestibulum sit amet erat. Vivamus eget viverra elit. Sed vehicula augue sit amet nibh convallis volutpat. Sed feugiat posuere nunc a auctor. Nam turpis erat, ultrices sed varius in, tempus nec enim. Donec hendrerit dignissim libero, non lacinia odio congue non. 
+\subsection{Pass I: Construction of the photon map}
+Cras nisi neque, pharetra ac cursus nec, vestibulum sit amet erat. Vivamus eget viverra elit. Sed vehicula augue sit amet nibh convallis volutpat. Sed feugiat posuere nunc a auctor. Nam turpis erat, ultrices sed varius in, tempus nec enim. Donec hendrerit dignissim libero, non lacinia odio congue non. 
+\subsection{Pass II: Rendering}
+Cras nisi neque, pharetra ac cursus nec, vestibulum sit amet erat. Vivamus eget viverra elit. Sed vehicula augue sit amet nibh convallis volutpat. Sed feugiat posuere nunc a auctor. Nam turpis erat, ultrices sed varius in, tempus nec enim. Donec hendrerit dignissim libero, non lacinia odio congue non. 
+\subsection{Irradiance caching}
+\begin{itemize}
+\item Lazy evaluation
+\item Greg Ward '88
+\item Cache entry contains the position, normal and irradiance value itself
+\item Range over which entry is valid
+\item Irradiance Gradients
+\end{itemize}
+\subsection{Caustics}
+Cras nisi neque, pharetra ac cursus nec, vestibulum sit amet erat. Vivamus eget viverra elit. Sed vehicula augue sit amet nibh convallis volutpat. Sed feugiat posuere nunc a auctor. Nam turpis erat, ultrices sed varius in, tempus nec enim. Donec hendrerit dignissim libero, non lacinia odio congue non. Nulla eu velit urna, ut accumsan nibh. Fusce ligula massa, volutpat ut blandit at, dignissim sed orci. 
+\subsection{Indirect Illumination}
+Cras nisi neque, pharetra ac cursus nec, vestibulum sit amet erat. Vivamus eget viverra elit. Sed vehicula augue sit amet nibh convallis volutpat. Sed feugiat posuere nunc a auctor. Nam turpis erat, ultrices sed varius in, tempus nec enim. Donec hendrerit dignissim libero, non lacinia odio congue non. Nulla eu velit urna, ut accumsan nibh. Fusce ligula massa, volutpat ut blandit at, dignissim sed orci. 
+\subsection{Flexibility}
+Class aptent taciti sociosqu ad litora torquent per conubia nostra, per inceptos himenaeos. Quisque at arcu risus. Vestibulum ullamcorper quam ut ipsum elementum porta. Proin et lorem nibh, vel vulputate justo. Nulla facilisi. Morbi diam mi, eleifend et euismod eget, blandit ut mi. Cras et convallis erat. 

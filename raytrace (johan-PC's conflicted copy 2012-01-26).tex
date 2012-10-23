@@ -1,0 +1,47 @@
+\chapter{Ray tracing}
+Pellentesque felis nulla, interdum eu pretium vitae, tincidunt ultrices erat. Integer a quam ut nibh lobortis vulputate. Phasellus felis augue, sagittis vitae tempus porta, placerat ut dui. Quisque commodo, erat ut iaculis viverra, urna dui luctus erat, ac rutrum ligula mauris non arcu. Maecenas nisi nunc, pulvinar in interdum eget, adipiscing quis lorem. Etiam hendrerit faucibus orci, ac elementum dui posuere eget. Vivamus felis purus, eleifend non tempus sed, dapibus in risus. Suspendisse et ipsum augue.
+\section{The scene}
+Ut in erat tellus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Integer id fringilla massa. Praesent ut urna vel neque eleifend congue. Donec libero felis, placerat ac scelerisque sed, eleifend ac nisl. Nullam sapien odio, volutpat at venenatis nec, sollicitudin condimentum magna. In hac habitasse platea dictumst. Integer enim turpis, pellentesque in commodo ac, sagittis lobortis erat.
+\section{Light sources}
+Ut in erat tellus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Integer id fringilla massa. Praesent ut urna vel neque eleifend congue. Donec libero felis, placerat ac scelerisque sed, eleifend ac nisl. Nullam sapien odio, volutpat at venenatis nec, sollicitudin condimentum magna. In hac habitasse platea dictumst. Integer enim turpis, pellentesque in commodo ac, sagittis lobortis erat.
+\section{Ray intersection}
+Ut in erat tellus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Integer id fringilla massa. Praesent ut urna vel neque eleifend congue. Donec libero felis, placerat ac scelerisque sed, eleifend ac nisl. Nullam sapien odio, volutpat at venenatis nec, sollicitudin condimentum magna. In hac habitasse platea dictumst. Integer enim turpis, pellentesque in commodo ac, sagittis lobortis erat.
+\section{Shading}
+Ut in erat tellus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Integer id fringilla massa. Praesent ut urna vel neque eleifend congue. Donec libero felis, placerat ac scelerisque sed, eleifend ac nisl. Nullam sapien odio, volutpat at venenatis nec, sollicitudin condimentum magna. In hac habitasse platea dictumst. Integer enim turpis, pellentesque in commodo ac, sagittis lobortis erat.
+\section{Reflection}
+The reflection direction can be found using the surface normal $n$ and the ray direction $d$:\\
+\[
+\mathbf r = \mathbf d - 2(\mathbf n \cdot \mathbf d ) \mathbf n.
+\]
+The reflected ray has equation:
+\[
+\mathbf x = \mathbf y  + u \mathbf r.
+\]
+\section{Refraction}
+Ut in erat tellus. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia Curae; Integer id fringilla massa. Praesent ut urna vel neque eleifend congue. Donec libero felis, placerat ac scelerisque sed, eleifend ac nisl. Nullam sapien odio, volutpat at venenatis nec, sollicitudin condimentum magna. In hac habitasse platea dictumst. Integer enim turpis, pellentesque in commodo ac, sagittis lobortis erat.
+\\
+\begin{table}
+\centering
+\begin{tabular}{}
+Material          			& P \\
+\hline
+Ice 						& 1.309 \\
+Water ($0^{\circ}$			& 1.33346 \\
+Water ($20^{\circ}$			& 1.33283 \\
+Flint glass (29\% lead) 	& 1.569 \\
+Flint glass (55\% lead) 	& 1.669 \\
+Flint glass (71\% lead) 	& 1.805 \\
+Crown glass					& 1.52 \\
+Air 						& 1.000293 \\
+Diamond 					& 2.42 \\
+Ethanol 					& 1.36 \\
+Methanol 					& 1.329 \\
+\end{tabular}
+\caption{}
+\label{tab:Refraction indices}
+\end{table}
+
+\section{Shadows}
+Penumbra
+\section{Anti-aliasing}
+Oversampling
